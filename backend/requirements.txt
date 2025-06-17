@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+qdrant-client
+torch
+torchvision
+sentence-transformers
+requests
+langchain
