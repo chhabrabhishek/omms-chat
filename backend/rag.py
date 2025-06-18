@@ -8,7 +8,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http.models import Distance, VectorParams, PointStruct
 import requests
 
-model = SentenceTransformer("intfloat/e5-large-v2")
+model = SentenceTransformer("local_models/e5-large-v2")
 
 QDRANT_HOST = os.getenv("QDRANT_HOST", "localhost")
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "localhost")
@@ -58,7 +58,7 @@ except:
     initialize_collection()
 
 
-def query_qdrant(query, top_k=3):
+def query_qdrant(query, top_k=5):
     query_vector = model.encode(f"query: {query}").tolist()
     results = client.search(
         collection_name=COLLECTION_NAME, query_vector=query_vector, limit=top_k
